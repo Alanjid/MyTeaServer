@@ -5,13 +5,12 @@ const mysql= require("mysql");
 const cors = require ("cors");
 dotenv.config({path: './env/.env'})
 const db = require('./database/db')
-app.use(cors());
+app.use(cors( {origin: process.env.FRONTED_URL} ));
 app.use(express.json());
 
-app.get("/login", (req, res) => {
-    console.log("asd "+req.body)
+app.post("/login", (req, res) => {
     const Correo = req.body.email;
-    db.query('SELECT * FROM terapeutas',
+    db.query('SELECT * FROM terapeutas WHERE correo = ?', [Correo],
     (err, result) => {
         if(err){
             console.log(err);
@@ -21,6 +20,6 @@ app.get("/login", (req, res) => {
     });
 });
 
-app.listen(3003, ()=>{
+app.listen(process.env.PORT, ()=>{
     console.log('SERVER UP runnung in http://localhost:3003')
 })
