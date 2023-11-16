@@ -37,6 +37,17 @@ app.post("/login", (req, res) => {
     });
 });
 
+app.get("/user", (req, res) => {
+    db.query('SELECT * FROM terapeutas',
+    (err, result) => {
+        if(err){
+            console.log(err);
+        }else{
+            res.send(result[0]);
+        }
+    });
+});
+
 app.listen(process.env.PORT, ()=>{
     console.log('SERVER UP runnung in http://localhost:3003')
 })
