@@ -8,17 +8,6 @@ dotenv.config({path: './env/.env'})
 const db = require('./database/db')
 app.use(cors( {origin: process.env.FRONTED_URL} ));
 app.use(express.json());
-const session = require('express-session');
-
-app.use(session({
-    secret: 'SSecret',
-    cookie: { 
-        sameSite: 'strict',
-        maxAge: null,
-        expires: null
-    },
-    saveUninitialized: false
-}));
 
 app.post("/login", (req, res) => {
     const Correo = req.body.email;
