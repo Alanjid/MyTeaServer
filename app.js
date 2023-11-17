@@ -6,6 +6,8 @@ const cors = require ("cors");
 const bcryptjs = require('bcryptjs')
 dotenv.config({path: './env/.env'})
 const db = require('./database/db')
+const jwt = require('jsonwebtoken');
+
 app.use(cors( {origin: process.env.FRONTED_URL} ));
 app.use(express.json());
 
@@ -19,8 +21,24 @@ app.post("/login", (req, res) => {
             if(! (await bcryptjs.compare(pass, result[0].pass))){
                 res.send({})
             }else{
-                res.send(result);
-                
+                const datosToken = {
+                    correo: result[0].correo,
+                    nombre: result[0].nombre,
+                    rol: result[0].rol,
+                };
+                const token = jwt.sign(datosToken, 'MyTeaSecret', {expiresIn: "1m"});
+                const Resultado = {
+                    token,
+                    correo: result[0].correo,
+                    nombre: result[0].nombre,
+                    app: result[0].app,
+                    apm: result[0].apm,
+                    rol: result[0].rol,
+                    idinstitucion: result[0].idinstitucion,
+                    isactive: result[0].isactive,
+                };
+                console.log(Resultado)
+                res.send(Resultado);
             }
         }
     });
