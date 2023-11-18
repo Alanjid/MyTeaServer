@@ -26,7 +26,7 @@ app.post("/login", (req, res) => {
                     nombre: result[0].nombre,
                     rol: result[0].rol,
                 };
-                const token = jwt.sign(datosToken, 'MyTeaSecret', {expiresIn: "1m"});
+                const token = jwt.sign(datosToken, process.env.JWTSecret, {expiresIn: "8h"});
                 const Resultado = {
                     token,
                     correo: result[0].correo,
