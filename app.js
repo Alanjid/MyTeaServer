@@ -102,7 +102,7 @@ app.post("/user", (req, res) => {
                     delete body.exp;
                 }
             } catch (error) {
-                console.log(error)
+                console.log('No tiene fecha de venticimiento')
             }
             if(JSON.stringify(arrar) === JSON.stringify(body)){
                 jwt.verify(Token, process.env.JWTSecret, function(err, decoded){
