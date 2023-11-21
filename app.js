@@ -107,14 +107,12 @@ app.post("/user", (req, res) => {
             if(JSON.stringify(arrar) === JSON.stringify(body)){
                 jwt.verify(Token, process.env.JWTSecret, function(err, decoded){
                     if(err){
-                        console.log('Tiempo limite excedido')
                         res.send('false')
                     }else{
                         res.send('true')
                     }
                 })
             }else{
-                console.log("No son iguales")
                 res.send('false')
             }
         }
