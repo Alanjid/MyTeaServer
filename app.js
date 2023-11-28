@@ -8,8 +8,13 @@ dotenv.config({path: './env/.env'})
 const db = require('./database/db')
 const jwt = require('jsonwebtoken');
 
+const PacientesRoutes = require('./routes/pacientes')
+
 app.use(cors( {origin: process.env.FRONTED_URL} ));
 app.use(express.json());
+
+//rutas
+app.use(PacientesRoutes)
 
 app.use((req, res, next) => {
     res.setHeader('X-Frame-Options', 'DENY');
@@ -125,6 +130,22 @@ app.post("/user", (req, res) => {
         console.log('Algo trono xd')
     }
 });
+
+/* app.get("/pacientes", (req, res) => {
+    console.log(req.query.terapeuta)    
+    const paciente_id = req.query.terapeuta
+    
+    //db.query()
+    res.send('hola')
+});
+ */
+
+
+
+
+
+
+
 
 app.listen(process.env.PORT, ()=>{
     console.log('SERVER UP runnung in http://localhost:3003')
