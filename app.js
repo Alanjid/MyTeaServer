@@ -6,6 +6,7 @@ const cors = require ("cors");
 dotenv.config({path: './env/.env'})
 const PacientesRoutes = require('./routes/pacientes')
 const LogIn = require('./routes/LogIn')
+const usersRoutes = require('./routes/userRoutesApp');
 
 app.use(cors( {origin: process.env.FRONTED_URL} ));
 app.use(express.json());
@@ -13,6 +14,7 @@ app.use(express.json());
 //rutas
 app.use(PacientesRoutes)
 app.use(LogIn)
+usersRoutes(app);
 
 app.use((req, res, next) => {
     res.setHeader('X-Frame-Options', 'DENY');
