@@ -11,7 +11,7 @@ router.post("/login", (req, res) => {
         if(err){
             console.log(err);
         }else{
-            if(! (await bcryptjs.compare(pass, result[0].pass))){
+            if(! (await bcryptjs.compare(pass, result[0].pass))){   
                 res.send({})
             }else{
                 const expirar= req.body.recordarme
