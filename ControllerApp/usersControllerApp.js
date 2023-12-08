@@ -19,7 +19,7 @@ module.exports= {
                 });
             }
             if(!myUser){
-                return res.status(401).json({ //EL CLIENTE NO TIENE AUTORIZACION PARA REALIZAR PETICION
+                return res.status(401).json({ //EL  CLIENTE NO TIENE AUTORIZACION PARA REALIZAR PETICION
                     success: false,
                     message:'Usuario no encontrado',
                     error:err
@@ -31,16 +31,16 @@ module.exports= {
                 const token= jwt.sign({
                     karnet: myUser.karnet, username: myUser.username},keys.secretOrKey,{});
                     const data =  {
-                        karnet: myUser.karnet,
+                        karnet: `${myUser.karnet}`,
                         nombre: myUser.nombre,
                         app: myUser.app,
                         apm: myUser.apm,
                         username: myUser.username,
                         password: myUser.password,
                         fecha: myUser.fecha,
-                        diagnostico: myUser.diagnostico,
-                        idinstitucion: myUser.idinstitucion,
-                        isactive: myUser.isactive,
+                        diagnostico: `${myUser.diagnostico}`,
+                        idinstitucion: `${myUser.idinstitucion}`,
+                        isactive: `${myUser.isactive}`,
                         session_token: `JWT ${token}`
                     }
                     return res.status(201).json({
