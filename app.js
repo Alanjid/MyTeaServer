@@ -25,6 +25,6 @@ app.use((req, res, next) => {
     res.setHeader('X-Frame-Options', 'DENY');
     next();
 });
-app.listen(process.env.PORT, ()=>{
-    console.log('SERVER UP runnung in http://localhost:3003')
+app.listen(3003 ,()=>{
+    console.log('SERVER UP running in http://localhost:3003')
 })
