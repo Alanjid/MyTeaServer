@@ -3,14 +3,11 @@ const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 const keys=require('../configAPP/keys');
 module.exports= {
-     
+
     login(req,res){
         const username=req.body.username;
         const password=req.body.password;
         User.findByUsername (username,async (err,myUser)=>{
-            
-            console.log('Error: ',err);
-            console.log('Usuario: ',myUser);
             if(err){
                 return res.status(501).json({
                     success: false,
