@@ -9,12 +9,14 @@ const db = require('./database/db')
 const jwt = require('jsonwebtoken');
 
 const PacientesRoutes = require('./routes/pacientes')
+const TerapeutasRoutes = require('./routes/terapeuta')
 
 app.use(cors( {origin: process.env.FRONTED_URL} ));
 app.use(express.json());
 
 //rutas
 app.use(PacientesRoutes)
+app.use(TerapeutasRoutes)
 
 app.post("/login", (req, res) => {
     const Correo = req.body.email;
